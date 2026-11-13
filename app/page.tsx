@@ -15,8 +15,8 @@ const projects = [
     name: "LazyTranslator",
     tag: "Desktop · AI",
     description:
-      "A local-first desktop translator built with Tauri 2 and Rust. Multi-gigabyte neural models run on your machine — your content never leaves the device.",
-    stack: ["Rust", "Tauri 2", "React 19", "SQLite"],
+      "A local-first desktop translator built with Rust and iced. Multi-gigabyte neural models run on your machine — your content never leaves the device.",
+    stack: ["Rust", "iced", "SQLite"],
     href: "https://github.com/FutureMindsDev/lazytranslator-intro",
     accent: "from-brand-terracotta to-brand-violet",
   },
