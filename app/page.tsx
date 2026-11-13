@@ -59,8 +59,22 @@ const projects = [
 ];
 
 const team = [
-  { name: "Arkar", role: "Co-founder & Engineer", avatar: "/assets/arkar-avatar.png" },
-  { name: "Khin", role: "Co-founder & Designer", avatar: "/assets/khin-avatar.png" },
+  {
+    name: "Arkar Chan Myae",
+    role: "Co-Founder & Lead Systems / AI Architect",
+    focus:
+      "Multi-agent orchestration, backend systems, autonomous developer tooling & infrastructure.",
+    avatar: "/assets/arkar-avatar.png",
+    github: "https://github.com/arkar-chanmyae",
+  },
+  {
+    name: "Khin Me Me Latt",
+    role: "Co-Founder & Software / Product Engineer",
+    focus:
+      "Full-stack applications, user experience, AI product innovation & creative solutions.",
+    avatar: "/assets/khin-avatar.png",
+    github: "https://github.com/khin-me-me-latt",
+  },
 ];
 
 export default function Home() {
@@ -154,20 +168,6 @@ export default function Home() {
                 height={420}
                 priority
                 className="drop-shadow-xl"
-              />
-              <Image
-                src="/assets/Milk.svg"
-                alt=""
-                width={96}
-                height={96}
-                className="absolute -left-6 -top-6 hidden sm:block"
-              />
-              <Image
-                src="/assets/Mocha.svg"
-                alt=""
-                width={96}
-                height={96}
-                className="absolute -bottom-6 -right-6 hidden sm:block"
               />
             </div>
           </div>
@@ -277,6 +277,17 @@ export default function Home() {
                 <div>
                   <p className="font-display text-xl font-semibold">{m.name}</p>
                   <p className="text-sm text-muted-foreground">{m.role}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                    {m.focus}
+                  </p>
+                  <a
+                    href={m.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-block text-sm font-semibold text-primary hover:underline"
+                  >
+                    GitHub →
+                  </a>
                 </div>
               </div>
             ))}
