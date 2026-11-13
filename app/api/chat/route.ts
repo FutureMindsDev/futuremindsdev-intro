@@ -1,19 +1,34 @@
 import { GoogleGenAI } from "@google/genai";
 
-// --- Simple in-memory rate limiter (per IP) ---
-const RATE_LIMIT = 10; // requests
-const WINDOW_MS = 60_000; // per minute
-const buckets = new Map<string, { count: number; reset: number }>();
+// --- In-memory rate limiter (per IP): 5/min and 10/hour ---
+const MIN_LIMIT = 5;
+const MIN_WINDOW = 60_000;
+const HOUR_LIMIT = 10;
+const HOUR_WINDOW = 3_600_000;
 
-function isRateLimited(ip: string): boolean {
+const minBuckets = new Map<string, { count: number; reset: number }>();
+const hourBuckets = new Map<string, { count: number; reset: number }>();
+
+function checkBucket(
+  map: Map<string, { count: number; reset: number }>,
+  ip: string,
+  limit: number,
+  window: number,
+): boolean {
   const now = Date.now();
-  const bucket = buckets.get(ip);
-  if (!bucket || now > bucket.reset) {
-    buckets.set(ip, { count: 1, reset: now + WINDOW_MS });
+  const b = map.get(ip);
+  if (!b || now > b.reset) {
+    map.set(ip, { count: 1, reset: now + window });
     return false;
   }
-  if (bucket.count >= RATE_LIMIT) return true;
-  bucket.count += 1;
+  if (b.count >= limit) return true;
+  b.count += 1;
+  return false;
+}
+
+function isRateLimited(ip: string): boolean {
+  if (checkBucket(minBuckets, ip, MIN_LIMIT, MIN_WINDOW)) return true;
+  if (checkBucket(hourBuckets, ip, HOUR_LIMIT, HOUR_WINDOW)) return true;
   return false;
 }
 
