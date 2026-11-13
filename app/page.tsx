@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Chathead } from "@/components/chathead";
 
 const projects = [
   {
@@ -76,6 +77,23 @@ const team = [
     github: "https://github.com/khin-me-me-latt",
   },
 ];
+
+const portfolioData = {
+  organization: "FutureMindsDev",
+  description:
+    "A small studio crafting AI-powered tools and developer utilities.",
+  projects: projects.map((p) => ({
+    name: p.name,
+    tag: p.tag,
+    description: p.description,
+    stack: p.stack,
+  })),
+  team: team.map((m) => ({
+    name: m.name,
+    role: m.role,
+    focus: m.focus,
+  })),
+};
 
 export default function Home() {
   return (
@@ -320,6 +338,7 @@ export default function Home() {
           </div>
         </footer>
       </main>
+      <Chathead portfolio={portfolioData} />
     </div>
   );
 }
