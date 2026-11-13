@@ -28,7 +28,7 @@
     "zod": "^4.6.5"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/postcss": "^4.3.5",
     "@tanstack/eslint-plugin-query": "^5.104.1",
     "@types/node": "^26.6.4",
     "@types/react": "^19.3.0",
