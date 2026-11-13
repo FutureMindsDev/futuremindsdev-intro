@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Fredoka, Nunito } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${fredoka.variable} ${nunito.variable} antialiased font-[family-name:var(--font-nunito)]`}
       >
         <Providers>{children}</Providers>
+        <Analytics />
       </body>
     </html>
   );
